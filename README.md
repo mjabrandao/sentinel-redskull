@@ -9,5 +9,5 @@ This Docker image does not start a regular Redis instance, but instead starts a 
 An example on how to launch Sentinel, exposing the host machine IP address (assuming it's on eth0) and the default Sentinel port:
 
 ```
-docker run --name sentinel -d -p 26379:26379 -p 8000:8000 mjabrandao/redis-sentinel --sentinel announce-ip `ifconfig eth0 | awk '/inet addr/{print substr($2,6)}'` --sentinel announce-port 26379
+docker run --name sentinel -d -p 26379:26379 -p 8000:8000 mbrandao/redis-sentinel-redskull --sentinel announce-ip `ifconfig eth0 | awk '/inet addr/{print substr($2,6)}'` --sentinel announce-port 26379
 ```
