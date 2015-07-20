@@ -16,14 +16,14 @@ RUN \
 	go get "github.com/therealbill/libredis/info" && \
 	go get "github.com/zenazn/goji" && \
 	go get github.com/therealbill/redskull && \
-	cd $GOPATH/src/github.com/therealbill/redskull && \
-	gpm install && \
-	go build && \
-	./redskull && \
 	cd /etc && \
 	mkdir redis && \
 	cd redis && \
-	curl -o - http://download.redis.io/redis-stable/sentinel.conf | sed '/mymaster/d' > sentinel.conf
+	curl -o - http://download.redis.io/redis-stable/sentinel.conf | sed '/mymaster/d' > sentinel.conf && \
+	cd $GOPATH/src/github.com/therealbill/redskull && \
+	gpm install && \
+	go build && \
+	./redskull
 
 ENTRYPOINT ["redis-sentinel", "/etc/redis/sentinel.conf"]
 EXPOSE 26379
